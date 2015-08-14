@@ -86,7 +86,7 @@ io.on('connection', function(socket){
 
 });
 
-var server = app.listen(3000, function () {
+var server = app.listen(PORT, function () {
   console.log('Example app listening at http://%s:%s', PORT);
 });
 
