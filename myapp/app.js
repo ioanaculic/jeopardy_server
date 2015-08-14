@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors')
 var routes = require('./routes/index');
-var users  = routes.users;
+//var users  = routes.users;
 
 var PORT = 80;
 var mutex = 0;
@@ -71,8 +71,8 @@ routes.post('/answer', function(req, res){
       mutex = 1;
       var color = req.body.color;
       console.log(color);
-      console.log(app.users);
-      var user = users[color];
+      console.log(routes.getUsers);
+      var user = toutes.getUsers[color];
       console.log(user);
       if(user)
       {
