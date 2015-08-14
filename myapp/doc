@@ -1,0 +1,35 @@
+/register
+=>{
+	"name":"Ana Popescu",
+	"color":"Red",
+}
+<={
+	"result":"done"/"error",
+	"id":"uuid"
+}
+
+/get_score
+=>{
+	"id":"uuid"
+}
+<={
+	"score":score
+	"result":"done"/"error"
+}
+
+/add_points
+=>{
+	"id":"uuid",
+	"points":int
+}
+<={
+	"result":"done"/"error"
+}
+
+/answer
+=>{
+	"id":"uuid"
+}
+<={
+	"result":"done"/"error"
+}
