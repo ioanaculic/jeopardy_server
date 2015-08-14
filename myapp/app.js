@@ -59,7 +59,10 @@ app.use(function(err, req, res, next) {
   });
 });
 
-routes.post('/answer', function(req, res){
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  routes.post('/answer', function(req, res){
   if (mutex == 0)
   {
     mutex = 1;
@@ -67,7 +70,7 @@ routes.post('/answer', function(req, res){
     var user = users[color];
     if(user)
     {
-      io.emit('answer',{'color':user});
+      socket.emit('answer',{'color':user});
       res.send(200, {'result':'done'});
     }
     else
@@ -77,9 +80,6 @@ routes.post('/answer', function(req, res){
     res.send(200, {"result":"done"});
 
 });
-
-io.on('connection', function(socket){
-  console.log('a user connected');
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
