@@ -69,6 +69,8 @@ routes.post('/answer', function(req, res){
     {
       mutex = 1;
       var color = req.body.color;
+      console.log(color);
+      console.log(users);
       var user = users[color];
       console.log(user);
       if(user)
