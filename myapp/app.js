@@ -6,13 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors')
 var routes = require('./routes/index');
+var users  = routes.users;
 
 var PORT = 80;
 var mutex = 0;
 var mySocket = null;
 
 var app = express();
-var users = app.users;
 app.use(cors());
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -71,7 +71,7 @@ routes.post('/answer', function(req, res){
       mutex = 1;
       var color = req.body.color;
       console.log(color);
-      console.log(users);
+      console.log(app.users);
       var user = users[color];
       console.log(user);
       if(user)

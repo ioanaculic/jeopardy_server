@@ -73,5 +73,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+function getUsers()
+{
+	return users;
+}
+
 module.exports = router;
 exports.users = users;
+exports.getUsers = getUsers;
