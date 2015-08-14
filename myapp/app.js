@@ -65,7 +65,6 @@ routes.post('/answer', function(req, res){
   console.log(req);
   if(mySocket != null)
   {
-    console.log(mySocket);
     if (mutex == 0)
     {
       mutex = 1;
