@@ -12,6 +12,7 @@ var mutex = 0;
 var mySocket = null;
 
 var app = express();
+var users = app.users;
 app.use(cors());
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
