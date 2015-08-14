@@ -60,6 +60,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
+<<<<<<< HEAD
 routes.get('/new', function(req, res){
   mutex = 0;
   res.send({"result":"done"});
@@ -68,6 +69,12 @@ routes.get('/new', function(req, res){
 io.on('connection', function(socket){
   console.log('a user connected');
 routes.post('/answer', function(req, res){
+=======
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  routes.post('/answer', function(req, res){
+>>>>>>> fafbdd68494f6e517697c3ee28d77d9a23981cbd
   if (mutex == 0)
   {
 console.log('in mutex');
@@ -87,8 +94,11 @@ console.log(req.body);
     res.send(200, {"result":"done"});
 
 });
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> fafbdd68494f6e517697c3ee28d77d9a23981cbd
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
