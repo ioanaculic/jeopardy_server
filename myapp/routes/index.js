@@ -75,6 +75,7 @@ router.get('/', function(req, res, next) {
 
 function getUsers()
 {
+	console.log(users);
 	return users;
 }
 
