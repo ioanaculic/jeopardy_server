@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 
 var PORT = 80;
 var mutex = 0;
+var mySocket = null;
 
 var app = express();
 app.use(cors());
@@ -60,7 +61,30 @@ app.use(function(err, req, res, next) {
   });
 });
 
-<<<<<<< HEAD
+routes.post('/answer', function(req, res){
+
+  if(mySocket != null)
+  {
+    if (mutex == 0)
+    {
+      mutex = 1;
+      var color = req.body.color;
+      var user = users[color];
+      if(user)
+      {
+        socket.emit('answer',{'color':user});
+        res.send(200, {'result':'done'});
+      }
+      else
+        res.send(200, {"result":"error"});
+    }
+    else
+      res.send(200, {"result":"done"});
+  }
+  else
+    res.send(200, {"result":"error"});
+});
+
 routes.get('/new', function(req, res){
   mutex = 0;
   res.send({"result":"done"});
@@ -68,37 +92,7 @@ routes.get('/new', function(req, res){
 
 io.on('connection', function(socket){
   console.log('a user connected');
-routes.post('/answer', function(req, res){
-=======
-
-io.on('connection', function(socket){
-  console.log('a user connected');
-  routes.post('/answer', function(req, res){
->>>>>>> fafbdd68494f6e517697c3ee28d77d9a23981cbd
-  if (mutex == 0)
-  {
-console.log('in mutex');
-console.log(req.body);
-    mutex = 1;
-    var color = req.body.color;
-    var user = users[color];
-    if(user)
-    {
-      socket.emit('answer',{'color':user});
-      res.send(200, {'result':'done'});
-    }
-    else
-      res.send(200, {"result":"error"});
-  }
-  else
-    res.send(200, {"result":"done"});
-
-});
-<<<<<<< HEAD
-
-
-=======
->>>>>>> fafbdd68494f6e517697c3ee28d77d9a23981cbd
+  mySocket = socket;
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
