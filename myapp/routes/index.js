@@ -8,9 +8,11 @@ var mutex = 0;
 function addUser (user)
 {
 	user.score = 0;
-	if(!user.color)
+	user.color = user.color.toLowerCase();
+	var color = user.color;
+	if(!users[color])
 	{
-		users[user.color] = user;
+		users[color] = user;
 		return 0;
 	}
 	return -1;
@@ -22,11 +24,13 @@ var router = express.Router();
 router.post('/register', function(req, res){
 	var data = req.body;
 	var rc = addUser(data);
+console.log("return code = "+rc);
 	if(rc == 0)
-		res.send(200, {"result":"done"});
-	else
-		res.send(200, {"result":"error"});
-});
+{var msg = {"result":"done"}
+		res.send(200, msg);}
+	else{var msg = {"result":"error"}
+		res.send(200, msg);
+}});
 
 router.post('/get_score', function(req, res){
 	var color = req.body.color;
@@ -57,9 +61,11 @@ router.get('/get_users', function(req, res){
 	for(var u in users)
 	{
 		var user = users[u];
+console.log(user);
 		newUsers.push(user);
 	}
-	res.send(200, {"result":"done", "users":newUsers});
+console.log(newUsers);
+	res.send(200, newUsers);
 });
 
 

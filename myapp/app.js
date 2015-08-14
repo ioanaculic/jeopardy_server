@@ -8,6 +8,7 @@ var cors = require('cors')
 var routes = require('./routes/index');
 
 var PORT = 80;
+var mutex = 0;
 
 var app = express();
 app.use(cors());
@@ -59,15 +60,24 @@ app.use(function(err, req, res, next) {
   });
 });
 
+routes.get('/new', function(req, res){
+  mutex = 0;
+  res.send({"result":"done"});
+});
+
+io.on('connection', function(socket){
+  console.log('a user connected');
 routes.post('/answer', function(req, res){
   if (mutex == 0)
   {
+console.log('in mutex');
+console.log(req.body);
     mutex = 1;
     var color = req.body.color;
     var user = users[color];
     if(user)
     {
-      io.emit('answer',{'color':user});
+      socket.emit('answer',{'color':user});
       res.send(200, {'result':'done'});
     }
     else
@@ -78,15 +88,14 @@ routes.post('/answer', function(req, res){
 
 });
 
-io.on('connection', function(socket){
-  console.log('a user connected');
+
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
 
 });
 
-var server = app.listen(PORT, function () {
+var server = http.listen(PORT, function () {
   console.log('Example app listening at http://%s:%s', PORT);
 });
 
