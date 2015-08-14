@@ -1,6 +1,6 @@
 var express = require('express');
 var users = {};
-
+console.log("in routes");
 
 var mutex = 0;
 
