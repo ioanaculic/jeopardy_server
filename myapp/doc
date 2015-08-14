@@ -1,4 +1,4 @@
-/register
+/register - inregistreaza user ( de pe telefon )
 =>{
 	"name":"Ana Popescu",
 	"color":"Red",
@@ -8,7 +8,7 @@
 	"id":"uuid"
 }
 
-/get_score
+/get_score - intoarce scorul unui user (de pe telefon)
 =>{
 	"id":"uuid"
 }
@@ -17,19 +17,26 @@
 	"result":"done"/"error"
 }
 
-/add_points
+/set_score - seteaza scorul unui user (din webpage)
 =>{
 	"id":"uuid",
-	"points":int
+	"score":int
 }
 <={
 	"result":"done"/"error"
 }
 
-/answer
+/get_users - returneaza toti userii (din webpage)
+<=[{"name":"username",
+	"color":"Red",
+	"id":"uuid"}]
+
+/answer - raspunde un user (de pe telefon)
 =>{
 	"id":"uuid"
 }
 <={
 	"result":"done"/"error"
 }
+
+la evenimentul de "answer" pe soket se trimite si id-ul celui care a raspuns

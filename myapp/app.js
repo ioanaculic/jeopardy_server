@@ -11,6 +11,9 @@ var PORT = 80;
 
 var app = express();
 
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -56,8 +59,36 @@ app.use(function(err, req, res, next) {
   });
 });
 
+routes.post('/answer', function(req, res){
+  if (mutex == 0)
+  {
+    mutex = 1;
+    var id = req.body.id;
+    var user = users[id];
+    if(user)
+    {
+      io.emit('answer',{'id':id});
+      res.send(200, {'result':'done'});
+    }
+    else
+      res.send(200, {"result":"error"});
+  }
+  else
+    res.send(200, {"result":"done"});
+
+});
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+
+});
+
 var server = app.listen(3000, function () {
   console.log('Example app listening at http://%s:%s', PORT);
 });
+
 
 module.exports = app;
