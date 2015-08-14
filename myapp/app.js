@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors')
-var routes = require('./routes/index');
+var routes = require('./routes/index.js');
 //var users  = routes.users;
 
 var PORT = 80;
