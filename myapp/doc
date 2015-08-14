@@ -5,12 +5,11 @@
 }
 <={
 	"result":"done"/"error",
-	"id":"uuid"
 }
 
 /get_score - intoarce scorul unui user (de pe telefon)
 =>{
-	"id":"uuid"
+	"color":"Red"
 }
 <={
 	"score":score
@@ -19,7 +18,7 @@
 
 /set_score - seteaza scorul unui user (din webpage)
 =>{
-	"id":"uuid",
+	"color":"Red",
 	"score":int
 }
 <={
@@ -28,15 +27,14 @@
 
 /get_users - returneaza toti userii (din webpage)
 <=[{"name":"username",
-	"color":"Red",
-	"id":"uuid"}]
+	"color":"Red"}]
 
 /answer - raspunde un user (de pe telefon)
 =>{
-	"id":"uuid"
+	"color":"Red"
 }
 <={
 	"result":"done"/"error"
 }
 
-la evenimentul de "answer" pe soket se trimite si id-ul celui care a raspuns
+la evenimentul de "answer" pe soket se trimite si user-ul care a raspuns

@@ -63,11 +63,11 @@ routes.post('/answer', function(req, res){
   if (mutex == 0)
   {
     mutex = 1;
-    var id = req.body.id;
-    var user = users[id];
+    var color = req.body.color;
+    var user = users[color];
     if(user)
     {
-      io.emit('answer',{'id':id});
+      io.emit('answer',{'color':user});
       res.send(200, {'result':'done'});
     }
     else
