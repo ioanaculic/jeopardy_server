@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors')
 var routes = require('./routes/index');
 
-var PORT = 80;
+var PORT = 8  0;
 var mutex = 0;
 var mySocket = null;
 
@@ -62,14 +62,16 @@ app.use(function(err, req, res, next) {
 });
 
 routes.post('/answer', function(req, res){
-
+  console.log(req);
   if(mySocket != null)
   {
+    console.log(mySocket);
     if (mutex == 0)
     {
       mutex = 1;
       var color = req.body.color;
       var user = users[color];
+      console.log(user);
       if(user)
       {
         socket.emit('answer',{'color':user});
