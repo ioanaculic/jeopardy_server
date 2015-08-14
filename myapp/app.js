@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors')
 var routes = require('./routes/index');
 
-var PORT = 8  0;
+var PORT = 80;
 var mutex = 0;
 var mySocket = null;
 
